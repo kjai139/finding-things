@@ -1,7 +1,7 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+
 import { firebaseAuth } from "../firebase"
 import { useEffect, useState } from "react"
-
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 
 
 const FireLogin = () => {
@@ -11,33 +11,38 @@ const FireLogin = () => {
         await signInWithPopup(firebaseAuth, provider)
     }
 
-    
+    const signOut = async () => {
+        firebaseAuth.signOut()
+    }
 
 
-    const [loginName, setloginName] = useState('')
-    const [loginState, setloginState] = useState('Not Logged in')
-    const [loggedIn, setloggedIn] = useState(false)
+    const [loginName, setLoginName] = useState('')
+    const [loginState, setLoginState] = useState('Not Logged in')
+    const [loggedIn, setLoggedIn] = useState(false)
 
     firebaseAuth.onAuthStateChanged((user) => {
         if (user) {
-            setloggedIn(true)
-            setloginState('Logged in as:')
+            setLoggedIn(true)
+            setLoginState('Logged in as:')
         } else {
-            setloggedIn(false)
-            setloginState('Not logged in')
+            setLoggedIn(false)
+            setLoginState('Not logged in')
         }
     })
 
     useEffect( () => {
-        if (loggedIn != undefined && loggedIn != false) {
+        if (loggedIn !== undefined && loggedIn !== false) {
             console.log(firebaseAuth.currentUser)
-            setloginName(firebaseAuth.currentUser.displayName)
+            setLoginName(firebaseAuth.currentUser.displayName)
+        } else {
+            setLoginName('')
         }
-    })
+    }, [loggedIn])
 
     return (
         <div>
             <button className="loginBtn" onClick={signIn}>Login</button>
+            <button onClick={signOut}>Sign out</button>
             <p>{loginState}{loginName}</p>
         </div>
     )
