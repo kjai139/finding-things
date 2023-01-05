@@ -7,3 +7,11 @@
   margin: 0;
   padding: 0;
 }
+
+
+
+.topNavList {
+  display:flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
