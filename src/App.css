@@ -1,5 +1,5 @@
 :root {
-
+  --navPadding: 30px;
 }
 
 
@@ -8,7 +8,45 @@
   padding: 0;
 }
 
+html, body, #root {
+  height: 100%;
+}
 
+.App {
+  margin-top: 78px;
+  display: flex;
+  height: 100%;
+}
+
+
+.topNav {
+  position: absolute;
+  top: 0;
+  padding: var(--navPadding);
+  width:100%;
+}
+
+
+.selectionGrid {
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  width: 100%;
+  height: 100%;
+  
+}
+
+.stageGridCard {
+  display: flex;
+  height: 400px;
+  flex-direction: column;
+}
+
+.stagesImg {
+  flex-grow: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .topNavList {
   display:flex;
