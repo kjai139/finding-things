@@ -4,6 +4,7 @@
 
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -13,39 +14,71 @@ html, body, #root {
 }
 
 .App {
-  margin-top: 78px;
+  flex-direction: column;
   display: flex;
   height: 100%;
+  position: relative;
+  background: linear-gradient(#28313B,#485461 );
 }
 
 
 .topNav {
-  position: absolute;
+  position: sticky;
   top: 0;
   padding: var(--navPadding);
   width:100%;
+  color:white;
+  background-color: black;
+  z-index: 9999;
 }
 
 
 .selectionGrid {
   
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
   width: 100%;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
   
 }
 
 .stageGridCard {
   display: flex;
-  height: 400px;
+  height: 600px;
   flex-direction: column;
+  position: relative;
+  flex-grow:1;
+  
+  transition: 0.5s;
+  
+}
+
+.stagesDiv {
+  width: 800px;
+  display:flex;
+  gap:5px;
 }
 
 .stagesImg {
-  flex-grow: 1;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  background-position: center center;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.stageGridCard:hover {
+  transform: scale(0.95);
+}
+
+.stagesName {
+  position: absolute;
+  align-self: center;
+  display: flex;
+  margin-top: 10%;
 }
 
 .topNavList {
