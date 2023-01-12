@@ -19,6 +19,10 @@ html, body, #root {
   height: 100%;
   position: relative;
   background: linear-gradient(#28313B,#485461 );
+
+
+
+  overflow-x: hidden;
 }
 
 
@@ -49,15 +53,16 @@ html, body, #root {
   flex-direction: column;
   position: relative;
   flex-grow:1;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   
-  transition: 0.5s;
   
 }
 
 .stagesDiv {
   width: 800px;
   display:flex;
-  gap:5px;
+  gap:15px;
 }
 
 .stagesImg {
@@ -65,13 +70,24 @@ html, body, #root {
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
-  background-position: center center;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-position: center;
+  
+  
+  transition: all 0.5s;
+  
+  
+}
+
+
+
+.stageGridCard:hover .stagesImg{
+  transform: scale(1.1);
+  
 }
 
 .stageGridCard:hover {
-  transform: scale(0.95);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(5, 5, 5) 0px 0px 0px 3px;
+  cursor: pointer;
 }
 
 .stagesName {
@@ -79,6 +95,8 @@ html, body, #root {
   align-self: center;
   display: flex;
   margin-top: 10%;
+  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+  font-weight: bold;
 }
 
 .topNavList {

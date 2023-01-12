@@ -2,6 +2,8 @@ import { useState } from "react"
 import n64stage from "./assets/maps/n64_stage1.jpg"
 import dreamcastStage from "./assets/maps/dreamcast_stage.jpg"
 import ps2Stage from "./assets/maps/ps2_stage.jpg"
+import { TopNav } from "./TopNav"
+import { HomeNav } from "./HomeNav"
 
 
 const Homepage = () => {
@@ -33,11 +35,14 @@ const Homepage = () => {
     }
 
     return (
+        <div className="App">
+        <HomeNav />
         <div className="selectionGrid">
             <div className="stagesDiv">
             {renderStages()}
             </div>
             
+        </div>
         </div>
     )
 }
