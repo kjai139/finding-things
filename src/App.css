@@ -65,6 +65,27 @@ html, body, #root {
   gap:15px;
 }
 
+.stageDiv {
+  display: flex;
+  width: 100%;
+}
+
+.stageBox {
+  display: flex;
+  justify-content: center;
+}
+
+.stageLink {
+  display:flex;
+  flex:1;
+  color: black;
+}
+
+.navLinks {
+  color: white;
+  text-decoration: none;
+}
+
 .stagesImg {
   background-size: cover;
   background-repeat: no-repeat;

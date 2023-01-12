@@ -4,6 +4,7 @@ import dreamcastStage from "./assets/maps/dreamcast_stage.jpg"
 import ps2Stage from "./assets/maps/ps2_stage.jpg"
 import { TopNav } from "./TopNav"
 import { HomeNav } from "./HomeNav"
+import { Link } from "react-router-dom"
 
 
 const Homepage = () => {
@@ -24,6 +25,7 @@ const Homepage = () => {
 
     const renderStages = () => {
         return stages.map(value =>
+            <Link className="stageLink" key={value.uuid} to={`/${value.stageTitle}`} state={value.stageImg}>
             <div className="stageGridCard" key={`stages${value.uuid}`}>
                 <div className="stagesImg" key={`img${value.uuid}`} style = {{
                     backgroundImage: `${value.stageImg ? `url(${value.stageImg})` : '' }`
@@ -31,6 +33,7 @@ const Homepage = () => {
                 <span className="stagesName" key={`stagesName${value.uuid}`}>{value.stageTitle ? value.stageTitle : 'Loading...'}</span>
 
             </div>
+            </Link>
             )
     }
 

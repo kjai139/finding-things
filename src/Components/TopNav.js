@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Link } from "react-router-dom"
 
 
 
@@ -48,9 +48,11 @@ const TopNav = () => {
                     <button onClick={stopTimer}>Stop timer</button> */}
                     {formatTime(timer)}
                 </li>
+                <Link className="navLinks" to={`/`}>
                 <li>
-                    PLACE HOLDER
+                    Return to menu
                 </li>
+                </Link>
             </ul>
         </nav>
     )
