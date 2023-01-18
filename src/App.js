@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/N64' element={<NsixtyfourStage />} />
+        <Route path='/:id' element={<NsixtyfourStage />} />
       </Routes>
       </BrowserRouter>
     </div>

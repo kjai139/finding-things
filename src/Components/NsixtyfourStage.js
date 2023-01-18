@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom"
 import { TopNav } from "./TopNav"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { createRef } from "react"
 
 
 const NsixtyfourStage = () => {
@@ -9,6 +10,18 @@ const NsixtyfourStage = () => {
     
     const stage = location.state
     console.log(location.state)
+
+    const [screenSize, setScreenSize] = useState({})
+
+    useEffect( () => {
+        const handleResize = () => {
+            setScreenSize(getWindowsDimensions())
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const [mouseCords, setMouseCords] = useState({x:0, y:0})
     const [popupStyle, setPopupStyle] = useState({
@@ -20,38 +33,99 @@ const NsixtyfourStage = () => {
         flexDirection: 'column'
     })
 
+    const [mapCords, setMapCords] = useState({x:0, y:0})
+
     const getCords = (e) => {
         let {width, height} = e.target.getBoundingClientRect()
         let {offsetX, offsetY} = e.nativeEvent
+        let adjustedX 
         
+        let left = e.target.getBoundingClientRect().left
+        let top = e.target.getBoundingClientRect().top
+
+        let mapX = Math.floor(offsetX / width * 100)
+        let mapY = Math.floor(offsetY / height * 100)
+
         console.log(e.target.getBoundingClientRect())
         console.log(offsetX / width * 100)
         console.log(offsetY / height * 100)
         console.log('screen cords', offsetX, offsetY)
+        
+        spawnPopUp(offsetX, offsetY)
+        
 
-        setPopupStyle( prevState => {
-            return {
-                ...prevState,
-                display:'flex',
-                top: offsetY + 'px',
-                left: offsetX + 'px'
-            }
-            
+        setMapCords({
+            x: mapX,
+            y: mapY
+        })
+
+        
+    }
+
+    const mouseMove = (e) => {
+        setMouseCords({
+            x:e.nativeEvent.offsetX,
+            y:e.nativeEvent.offsetY
         })
     }
+
+
+    const getWindowsDimensions = () => {
+        const {innerWidth: width, innerHeight: height} = window
+        console.log('width:',width, 'height:',height)
+        return {
+            x: width,
+            y: height
+        }
+    }
+
+
+    const spawnPopUp = (offsetX, offsetY) => {
+        
+
+
+        if (Number(screenSize.x) > 850){
+            let adjustedX = (screenSize.x - 1080) / 2 + offsetX
+            console.log(adjustedX)
+            setPopupStyle( prevState => {
+                return {
+                    ...prevState,
+                    display:'flex',
+                    top: offsetY + 'px',
+                    left: adjustedX + 'px'
+                }
+                
+            })
+        } else {
+            setPopupStyle( prevState => {
+                return {
+                    ...prevState,
+                    display:'flex',
+                    top: offsetY + 'px',
+                    left: offsetX + 'px'
+                }
+                
+            })
+        }
+    }
+
+    
 
 
     return (
         <div className="App">
             <TopNav />
             <div className="stageBox">
-            <img className="stageDiv" src={stage} alt="stageImg" onClick={getCords}></img>
+            <img className="stageDiv" src={stage} alt="stageImg" onClick={getCords} onMouseMove={mouseMove} onTouchMove={mouseMove}></img>
+            <div className="popupMenu" style={popupStyle}>
+                <div>X:{mouseCords.x}</div>
+                <div>Y:{mouseCords.y}</div>
+                <div>Map cords: {mapCords.x},{mapCords.y}</div>
+                <div>W: {screenSize.x} H: {screenSize.y}</div>
+            </div>
             </div>
 
-            <div className="popupMenu" style={popupStyle}>
-                <div>1st entry</div>
-                <div>2nd entry</div>
-            </div>
+           
         </div>
     )
 }
