@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 
 
-const TopNav = () => {
+const TopNav = ({characters, uuid}) => {
 
     const [timer, setTimer] = useState(0)
 
@@ -36,12 +36,27 @@ const TopNav = () => {
         return `${getHours}:${getMinutes}:${getSeconds}`
     }
 
+    const renderCharacters = () => {
+        return characters.map(value => 
+            
+                <div className="characterImg" key={`${value.name}${uuid}`}style={{
+                    backgroundImage: `url(${value.imgUrl})`
+                }}>
+
+                </div>
+            
+            )
+    }
+
 
     return (
         <nav className="topNav">
             <ul className="topNavList">
                 <li>
                     Logo
+                </li>
+                <li className="characterList">
+                {renderCharacters()}
                 </li>
                 <li>
                     {/* <button onClick={startTimer}>Start timer</button>

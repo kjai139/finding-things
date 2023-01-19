@@ -14,8 +14,12 @@ const NsixtyfourStage = () => {
     const [screenSize, setScreenSize] = useState({})
 
     useEffect( () => {
+        setScreenSize(getWindowsDimensions())
+
+
         const handleResize = () => {
             setScreenSize(getWindowsDimensions())
+            
         }
 
         window.addEventListener('resize', handleResize)
@@ -35,13 +39,12 @@ const NsixtyfourStage = () => {
 
     const [mapCords, setMapCords] = useState({x:0, y:0})
 
+    
+
     const getCords = (e) => {
         let {width, height} = e.target.getBoundingClientRect()
         let {offsetX, offsetY} = e.nativeEvent
-        let adjustedX 
         
-        let left = e.target.getBoundingClientRect().left
-        let top = e.target.getBoundingClientRect().top
 
         let mapX = Math.floor(offsetX / width * 100)
         let mapY = Math.floor(offsetY / height * 100)
@@ -114,9 +117,9 @@ const NsixtyfourStage = () => {
 
     return (
         <div className="App">
-            <TopNav />
+            <TopNav characters={stage.characters} uuid={stage.uuid} />
             <div className="stageBox">
-            <img className="stageDiv" src={stage} alt="stageImg" onClick={getCords} onMouseMove={mouseMove} onTouchMove={mouseMove}></img>
+            <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords} onMouseMove={mouseMove} onTouchMove={mouseMove}></img>
             <div className="popupMenu" style={popupStyle}>
                 <div>X:{mouseCords.x}</div>
                 <div>Y:{mouseCords.y}</div>

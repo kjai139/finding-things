@@ -142,4 +142,18 @@ html, body, #root {
   display:flex;
   justify-content: space-around;
   list-style-type: none;
+  align-items: center;
+}
+
+.characterImg {
+  width: 45px;
+  height: 45px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.characterList {
+  display: flex;
+  gap: 15px;
 }
