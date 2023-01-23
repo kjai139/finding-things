@@ -25,15 +25,21 @@ const Homepage = () => {
         characters: [
             {
                 imgUrl:donkeyKong,
-                name:'Donkey Kong'
+                name:'Donkey Kong',
+                cords:(76, 49),
+                range:2
             },
             {
                 imgUrl:harvestMoonDog,
-                name:'Dog'
+                name:'Dog',
+                cords:(61, 62),
+                range:1
             },
             {
                 imgUrl:starfox,
-                name:'Starfox'
+                name:'Starfox',
+                cords:(12, 41),
+                range:1
             }
         ]
     }, {

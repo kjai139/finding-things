@@ -39,7 +39,10 @@ const NsixtyfourStage = () => {
 
     const [mapCords, setMapCords] = useState({x:0, y:0})
 
-    
+    const [selectedMapCords, setSelectedMapCords] = useState({
+        x:0,
+        y:0
+    })
 
     const getCords = (e) => {
         let {width, height} = e.target.getBoundingClientRect()
@@ -112,6 +115,17 @@ const NsixtyfourStage = () => {
         }
     }
 
+    const loadCharacterMenu = () => {
+        return stage.characters.map(value => 
+            <button className="menuBtn">
+                <span>{value.name}</span>
+                <div className="menuImg" style={{
+                    backgroundImage: `url(${value.imgUrl})`
+                }}></div>
+            </button>
+            )
+    }
+
     
 
 
@@ -121,6 +135,7 @@ const NsixtyfourStage = () => {
             <div className="stageBox">
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords} onMouseMove={mouseMove} onTouchMove={mouseMove}></img>
             <div className="popupMenu" style={popupStyle}>
+                {loadCharacterMenu()}
                 <div>X:{mouseCords.x}</div>
                 <div>Y:{mouseCords.y}</div>
                 <div>Map cords: {mapCords.x},{mapCords.y}</div>

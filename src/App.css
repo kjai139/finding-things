@@ -157,3 +157,25 @@ html, body, #root {
   display: flex;
   gap: 15px;
 }
+
+
+.menuBtn {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.menuBtn > span {
+  display: flex;
+  white-space: nowrap;
+}
+
+.menuImg {
+  width: 20px;
+  height:20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
