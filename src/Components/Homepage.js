@@ -26,20 +26,26 @@ const Homepage = () => {
             {
                 imgUrl:donkeyKong,
                 name:'Donkey Kong',
-                cords:(76, 49),
-                range:2
+                cords:{x:76, y:49},
+                xRange:2,
+                yRange:2,
+                found:false
             },
             {
                 imgUrl:harvestMoonDog,
                 name:'Dog',
-                cords:(61, 62),
-                range:1
+                cords:{x:61, y:62},
+                xRange:1,
+                yRange:1,
+                found:false
             },
             {
                 imgUrl:starfox,
                 name:'Starfox',
-                cords:(12, 41),
-                range:1
+                cords:{x:12, y:41},
+                xRange:1,
+                yRange:1,
+                found:false
             }
         ]
     }, {
@@ -49,15 +55,27 @@ const Homepage = () => {
         characters: [
             {
                 imgUrl:sonic,
-                name:'Sonic'
+                name:'Sonic',
+                cords:(26, 40),
+                xRange:2,
+                yRange:2,
+                found:false
             },
             {
                 imgUrl:RAmar,
-                name:'Bernie'
+                name:'Bernie',
+                cords:(81, 47),
+                xRange:2,
+                yRange:2,
+                found:false
             },
             {
                 imgUrl:seaman,
-                name:'Seaman'
+                name:'Seaman',
+                cords:(28, 71),
+                xRange:3,
+                yRange:2,
+                found:false
             }
             
         ]
@@ -68,15 +86,27 @@ const Homepage = () => {
         characters: [
             {
                 imgUrl:kratos,
-                name:'Kratos'
+                name:'Kratos',
+                cords:(21, 52),
+                xRange:1,
+                yRange:1,
+                found:false
             },
             {
                 imgUrl:laharl,
-                name:'Laharl'
+                name:'Laharl',
+                cords:(69, 59),
+                xRange:1,
+                yRange:1,
+                found:false
             },
             {
                 imgUrl:jimmy,
-                name:'Jimmy Hopkins'
+                name:'Jimmy Hopkins',
+                cords:(63, 45),
+                xRange:1,
+                yRange:1,
+                found:false
             }
         ]
     }])

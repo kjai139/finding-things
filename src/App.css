@@ -166,16 +166,19 @@ html, body, #root {
   font-weight: bold;
   font-size: 12px;
   padding: 5px;
+  text-align: start;
+  background-position: center;
 }
 
 .menuBtn > span {
   display: flex;
-  white-space: nowrap;
+  flex:1;
+  
 }
 
 .menuImg {
-  width: 20px;
-  height:20px;
+  width: 24px;
+  height:24px;
   background-size: contain;
   background-repeat: no-repeat;
 }

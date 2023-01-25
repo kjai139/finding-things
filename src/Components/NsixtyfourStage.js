@@ -8,7 +8,7 @@ const NsixtyfourStage = () => {
 
     const location = useLocation()
     
-    const stage = location.state
+    const [stage, setStage] = useState(location.state)
     console.log(location.state)
 
     const [screenSize, setScreenSize] = useState({})
@@ -115,9 +115,15 @@ const NsixtyfourStage = () => {
         }
     }
 
+    
+
     const loadCharacterMenu = () => {
-        return stage.characters.map(value => 
-            <button className="menuBtn">
+        
+    
+
+
+        return stage.characters.map((value, index)  => 
+            <button key={`${value.name}-${stage.uuid}`} className="menuBtn" onClick={checkCords} value={index}>
                 <span>{value.name}</span>
                 <div className="menuImg" style={{
                     backgroundImage: `url(${value.imgUrl})`
@@ -126,6 +132,31 @@ const NsixtyfourStage = () => {
             )
     }
 
+    const checkCords = (e) => {
+        let index = e.target.parentNode.value
+        let targetX = stage.characters[index].cords.x
+        let targetY = stage.characters[index].cords.y
+        console.log('selected:', mapCords.x, mapCords.y)
+        console.log(targetX, targetY)
+
+        let obj = {
+            ...stage.characters[index],
+            found: true
+        }
+
+        console.log('obj', obj)
+        console.log(stage.characters)
+
+        let arr = stage.characters
+        let newArr = arr.splice(index, 1, obj)
+
+        console.log(arr)
+        
+       
+    }
+
+    
+
     
 
 
@@ -133,7 +164,7 @@ const NsixtyfourStage = () => {
         <div className="App">
             <TopNav characters={stage.characters} uuid={stage.uuid} />
             <div className="stageBox">
-            <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords} onMouseMove={mouseMove} onTouchMove={mouseMove}></img>
+            <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
             <div className="popupMenu" style={popupStyle}>
                 {loadCharacterMenu()}
                 <div>X:{mouseCords.x}</div>
