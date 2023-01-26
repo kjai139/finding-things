@@ -123,7 +123,7 @@ const NsixtyfourStage = () => {
 
 
         return stage.characters.map((value, index)  => 
-            <button key={`${value.name}-${stage.uuid}`} className="menuBtn" onClick={checkCords} value={index}>
+            <button key={`${value.name}-${stage.uuid}`} className="menuBtn" onClick={() => checkCords(index)} value={index}>
                 <span>{value.name}</span>
                 <div className="menuImg" style={{
                     backgroundImage: `url(${value.imgUrl})`
@@ -132,12 +132,36 @@ const NsixtyfourStage = () => {
             )
     }
 
-    const checkCords = (e) => {
-        let index = e.target.parentNode.value
+    const checkCords = (index) => {
+        // let index = e.target.parentNode.value
+        console.log('index', index)
         let targetX = stage.characters[index].cords.x
         let targetY = stage.characters[index].cords.y
         console.log('selected:', mapCords.x, mapCords.y)
         console.log(targetX, targetY)
+
+        let targetRangeX = stage.characters[index].xRange
+        let targetRangeY = stage.characters[index].yRange
+
+        let xDiff = Math.abs(mapCords.x - targetX)
+        let xDiffTwo = Math.abs(targetX - mapCords.x)
+        let yDiff = Math.abs(mapCords.y - targetY)
+        let yDiffTwo = Math.abs(targetY - mapCords.y)
+
+    
+
+        if ((xDiff <= Math.abs(targetRangeX) || xDiffTwo <= Math.abs(targetRangeX)) && (yDiff <= Math.abs(targetRangeY) ||  yDiffTwo <= Math.abs(targetRangeX))  ){
+            
+            console.log('in range')
+            // console.log(Math.abs(targetRangeX))
+
+            // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
+        } else {
+            console.log('out of range')
+            // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
+            // console.log(Math.abs(mapCords.x - targetX), Math.abs(targetRangeX))
+        }
+
 
         let obj = {
             ...stage.characters[index],
@@ -150,7 +174,7 @@ const NsixtyfourStage = () => {
         let arr = stage.characters
         let newArr = arr.splice(index, 1, obj)
 
-        console.log(arr)
+        console.log('arr', arr)
         
        
     }

@@ -182,3 +182,8 @@ html, body, #root {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+
+.foundtrue {
+  filter: grayscale(100%);
+}

@@ -39,7 +39,7 @@ const TopNav = ({characters, uuid}) => {
     const renderCharacters = () => {
         return characters.map(value => 
             
-                <div className="characterImg" key={`${value.name}${uuid}`}style={{
+                <div className={`found${value.found} characterImg`} key={`${value.name}${uuid}`}style={{
                     backgroundImage: `url(${value.imgUrl})`
                 }}>
 
