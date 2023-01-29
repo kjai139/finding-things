@@ -13,12 +13,17 @@ const NsixtyfourStage = () => {
 
     const [screenSize, setScreenSize] = useState({})
 
+    const [menuHidden, setMenuHidden] = useState(true)
+
+    const [isGameOver, setIsGameOver] = useState(true)
+
     useEffect( () => {
         setScreenSize(getWindowsDimensions())
 
 
         const handleResize = () => {
             setScreenSize(getWindowsDimensions())
+            setMenuHidden(true)
             
         }
 
@@ -45,6 +50,7 @@ const NsixtyfourStage = () => {
     })
 
     const getCords = (e) => {
+        setMenuHidden(false)
         let {width, height} = e.target.getBoundingClientRect()
         let {offsetX, offsetY} = e.nativeEvent
         
@@ -123,7 +129,7 @@ const NsixtyfourStage = () => {
 
 
         return stage.characters.map((value, index)  => 
-            <button key={`${value.name}-${stage.uuid}`} className="menuBtn" onClick={() => checkCords(index)} value={index}>
+            <button key={`${value.name}-${stage.uuid}`} className={`menuBtn menuF-${value.found}`} onClick={() => checkCords(index)} value={index}>
                 <span>{value.name}</span>
                 <div className="menuImg" style={{
                     backgroundImage: `url(${value.imgUrl})`
@@ -133,6 +139,7 @@ const NsixtyfourStage = () => {
     }
 
     const checkCords = (index) => {
+        
         // let index = e.target.parentNode.value
         console.log('index', index)
         let targetX = stage.characters[index].cords.x
@@ -156,30 +163,57 @@ const NsixtyfourStage = () => {
             // console.log(Math.abs(targetRangeX))
 
             // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
+
+            let obj = {
+                ...stage.characters[index],
+                found: true
+            }
+    
+            console.log('obj', obj)
+            console.log(stage.characters)
+    
+            let arr = stage.characters
+            let newArr = arr.splice(index, 1, obj)
+            console.log(stage)
+    
+            console.log('arr', newArr)
+            
+           setStage( (prevState) => {
+            return {
+                ...prevState,
+                characters:arr
+            }
+           })
         } else {
             console.log('out of range')
             // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
             // console.log(Math.abs(mapCords.x - targetX), Math.abs(targetRangeX))
         }
 
-
-        let obj = {
-            ...stage.characters[index],
-            found: true
-        }
-
-        console.log('obj', obj)
-        console.log(stage.characters)
-
-        let arr = stage.characters
-        let newArr = arr.splice(index, 1, obj)
-
-        console.log('arr', arr)
         
-       
+        
     }
 
     
+    const EndGamePopUp = () => {
+
+        return (
+            <div className="endPopUp">
+                <form className="playerForm">
+                    <div className="entryDiv">
+                    <label>Enter your name:</label>
+                    <input type="text">
+                    </input>
+                    </div>
+                    <div className="btnDiv">
+                    <button className="formBtn">
+                        Ok
+                    </button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
 
     
 
@@ -189,7 +223,7 @@ const NsixtyfourStage = () => {
             <TopNav characters={stage.characters} uuid={stage.uuid} />
             <div className="stageBox">
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
-            <div className="popupMenu" style={popupStyle}>
+            <div className={`popupMenu ${menuHidden ? 'hidden' : undefined }`} style={popupStyle}>
                 {loadCharacterMenu()}
                 <div>X:{mouseCords.x}</div>
                 <div>Y:{mouseCords.y}</div>
@@ -197,6 +231,10 @@ const NsixtyfourStage = () => {
                 <div>W: {screenSize.x} H: {screenSize.y}</div>
             </div>
             </div>
+            <div id="overlay" className={isGameOver ? 'hidden' : undefined}>
+
+            </div>
+            { isGameOver ? <EndGamePopUp /> : null}
 
            
         </div>

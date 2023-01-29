@@ -187,3 +187,54 @@ html, body, #root {
 .foundtrue {
   filter: grayscale(100%);
 }
+
+.menuF-true {
+  pointer-events: none;
+  filter:grayscale(100%);
+}
+
+.hidden {
+  display:none !important;
+}
+
+.endPopUp {
+  color: white;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left:50%;
+  top:50%;
+
+  padding:10px;
+  background-color: black;
+}
+
+.playerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+}
+
+
+
+.formBtn {
+  padding: 5px;
+}
+
+
+.entryDiv {
+  display:flex;
+  gap:5px;
+}
+
+.btnDiv {
+  display: flex;
+  align-self: flex-end;
+}
+
+#overlay {
+  position: fixed;
+  inset:0;
+
+  backdrop-filter: blur(6px);
+}
