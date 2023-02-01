@@ -56,7 +56,7 @@ const Homepage = () => {
             {
                 imgUrl:sonic,
                 name:'Sonic',
-                cords:(26, 40),
+                cords:{x:26, y:40},
                 xRange:2,
                 yRange:2,
                 found:false
@@ -64,7 +64,7 @@ const Homepage = () => {
             {
                 imgUrl:RAmar,
                 name:'Bernie',
-                cords:(81, 47),
+                cords:{x:81, y:47},
                 xRange:2,
                 yRange:2,
                 found:false
@@ -72,7 +72,7 @@ const Homepage = () => {
             {
                 imgUrl:seaman,
                 name:'Seaman',
-                cords:(28, 71),
+                cords:{x:28, y:71},
                 xRange:3,
                 yRange:2,
                 found:false
@@ -87,7 +87,7 @@ const Homepage = () => {
             {
                 imgUrl:kratos,
                 name:'Kratos',
-                cords:(21, 52),
+                cords:{x:21, y:52},
                 xRange:1,
                 yRange:1,
                 found:false
@@ -95,7 +95,7 @@ const Homepage = () => {
             {
                 imgUrl:laharl,
                 name:'Laharl',
-                cords:(69, 59),
+                cords:{x:69, y:59},
                 xRange:1,
                 yRange:1,
                 found:false
@@ -103,7 +103,7 @@ const Homepage = () => {
             {
                 imgUrl:jimmy,
                 name:'Jimmy Hopkins',
-                cords:(63, 45),
+                cords:{x:63, y:45},
                 xRange:1,
                 yRange:1,
                 found:false

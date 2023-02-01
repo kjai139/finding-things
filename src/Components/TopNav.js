@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
 
 
-const TopNav = ({characters, uuid}) => {
+const TopNav = ({characters, uuid, isGameOver, setTotalTime}) => {
 
     const [timer, setTimer] = useState(0)
 
     const [intervalId, setIntervalId] = useState('')
+
+    
 
     
     const startTimer = () => {
@@ -26,6 +28,27 @@ const TopNav = ({characters, uuid}) => {
     const stopTimer = () => {
         clearInterval(intervalId)
     }
+
+    useEffect ( () => {
+
+        
+        if (isGameOver == false) {
+            const interval = setInterval(() => {
+                setTimer( (prevState) => {
+                    return [
+                        Number(prevState) + 1
+                    ]
+                })
+            }, 1000)
+
+            return () => clearInterval(interval)
+        } else {
+            setTotalTime(formatTime(timer))
+        }
+        
+        
+
+    }, [isGameOver])
 
     const formatTime = (time) => {
         const getSeconds = `0${Math.round(time % 60)}`.slice(-2)

@@ -2,6 +2,9 @@ import { useLocation } from "react-router-dom"
 import { TopNav } from "./TopNav"
 import { useEffect, useRef, useState } from "react"
 import { createRef } from "react"
+import { fireStore } from "../firebase"
+import { addDoc, collection } from "firebase/firestore"
+import { EndGamePopUp } from "./EndGamePopUp"
 
 
 const NsixtyfourStage = () => {
@@ -16,6 +19,8 @@ const NsixtyfourStage = () => {
     const [menuHidden, setMenuHidden] = useState(true)
 
     const [isGameOver, setIsGameOver] = useState(true)
+
+    const [totalTime, setTotalTime] = useState(0)
 
     useEffect( () => {
         setScreenSize(getWindowsDimensions())
@@ -184,6 +189,8 @@ const NsixtyfourStage = () => {
                 characters:arr
             }
            })
+
+           checkIfGameOver()
         } else {
             console.log('out of range')
             // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
@@ -194,33 +201,36 @@ const NsixtyfourStage = () => {
         
     }
 
-    
-    const EndGamePopUp = () => {
+    const checkIfGameOver = () => {
+        console.log('check if game over', stage)
 
-        return (
-            <div className="endPopUp">
-                <form className="playerForm">
-                    <div className="entryDiv">
-                    <label>Enter your name:</label>
-                    <input type="text">
-                    </input>
-                    </div>
-                    <div className="btnDiv">
-                    <button className="formBtn">
-                        Ok
-                    </button>
-                    </div>
-                </form>
-            </div>
-        )
+        let items = stage.characters.length
+
+        let found = 0
+
+        stage.characters.forEach(element => {
+            if (element.found === true) {
+                found += 1
+            }
+        });
+        
+        if (items == found) {
+            setIsGameOver(true)
+        }
+        console.log(items, found)
     }
+
+    
+
+
+    
 
     
 
 
     return (
         <div className="App">
-            <TopNav characters={stage.characters} uuid={stage.uuid} />
+            <TopNav characters={stage.characters} uuid={stage.uuid} isGameOver={isGameOver} setTotalTime={setTotalTime} />
             <div className="stageBox">
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
             <div className={`popupMenu ${menuHidden ? 'hidden' : undefined }`} style={popupStyle}>
@@ -231,10 +241,10 @@ const NsixtyfourStage = () => {
                 <div>W: {screenSize.x} H: {screenSize.y}</div>
             </div>
             </div>
-            <div id="overlay" className={isGameOver ? 'hidden' : undefined}>
+            <div id="overlay" className={isGameOver ? undefined : 'hidden'}>
 
             </div>
-            { isGameOver ? <EndGamePopUp /> : null}
+            { isGameOver ? <EndGamePopUp totalTime={totalTime} stageName={stage.stageTitle} /> : null}
 
            
         </div>
