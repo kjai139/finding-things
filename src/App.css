@@ -245,3 +245,23 @@ html, body, #root {
 
   backdrop-filter: blur(6px);
 }
+
+
+.lbEntryDiv {
+  display: flex;
+  gap: 20px;
+  padding: 5px;
+}
+
+.lbTime {
+  justify-content: end;
+  display: flex;
+  flex-grow: 1;
+}
+
+.leaderboardTitle {
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid;
+  padding: 5px;
+}

@@ -18,9 +18,11 @@ const NsixtyfourStage = () => {
 
     const [menuHidden, setMenuHidden] = useState(true)
 
-    const [isGameOver, setIsGameOver] = useState(true)
+    const [isGameOver, setIsGameOver] = useState(false)
 
     const [totalTime, setTotalTime] = useState(0)
+
+    const [rawTime, setRawTime] = useState(0)
 
     useEffect( () => {
         setScreenSize(getWindowsDimensions())
@@ -230,7 +232,7 @@ const NsixtyfourStage = () => {
 
     return (
         <div className="App">
-            <TopNav characters={stage.characters} uuid={stage.uuid} isGameOver={isGameOver} setTotalTime={setTotalTime} />
+            <TopNav characters={stage.characters} uuid={stage.uuid} isGameOver={isGameOver} setTotalTime={setTotalTime} setRawTime={setRawTime} />
             <div className="stageBox">
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
             <div className={`popupMenu ${menuHidden ? 'hidden' : undefined }`} style={popupStyle}>
@@ -244,7 +246,7 @@ const NsixtyfourStage = () => {
             <div id="overlay" className={isGameOver ? undefined : 'hidden'}>
 
             </div>
-            { isGameOver ? <EndGamePopUp totalTime={totalTime} stageName={stage.stageTitle} /> : null}
+            { isGameOver ? <EndGamePopUp totalTime={totalTime} stageName={stage.stageTitle} rawTime={rawTime} /> : null}
 
            
         </div>

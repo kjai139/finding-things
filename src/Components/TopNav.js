@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 
 
-const TopNav = ({characters, uuid, isGameOver, setTotalTime}) => {
+const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
 
     const [timer, setTimer] = useState(0)
 
@@ -44,6 +44,7 @@ const TopNav = ({characters, uuid, isGameOver, setTotalTime}) => {
             return () => clearInterval(interval)
         } else {
             setTotalTime(formatTime(timer))
+            setRawTime(Number(timer))
         }
         
         
