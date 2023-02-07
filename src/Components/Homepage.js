@@ -127,7 +127,8 @@ const Homepage = () => {
 
     return (
         <div className="App">
-        <HomeNav />
+        <HomeNav stages={stages} />
+        
         <div className="selectionGrid">
             <div className="stagesDiv">
             {renderStages()}

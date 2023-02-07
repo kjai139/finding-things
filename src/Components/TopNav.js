@@ -8,26 +8,26 @@ const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
 
     const [timer, setTimer] = useState(0)
 
-    const [intervalId, setIntervalId] = useState('')
+    // const [intervalId, setIntervalId] = useState('')
 
     
 
     
-    const startTimer = () => {
-        const interval = setInterval(() => {
-            setTimer( (prevState) => {
-                return [
-                    Number(prevState) + 1
-                ]
-            })
-        }, 1000)
+    // const startTimer = () => {
+    //     const interval = setInterval(() => {
+    //         setTimer( (prevState) => {
+    //             return [
+    //                 Number(prevState) + 1
+    //             ]
+    //         })
+    //     }, 1000)
 
-        setIntervalId(interval)
-    }
+    //     setIntervalId(interval)
+    // }
 
-    const stopTimer = () => {
-        clearInterval(intervalId)
-    }
+    // const stopTimer = () => {
+    //     clearInterval(intervalId)
+    // }
 
     useEffect ( () => {
 
@@ -77,7 +77,7 @@ const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
         <nav className="topNav">
             <ul className="topNavList">
                 <li>
-                    Logo
+                    Finding not waldo
                 </li>
                 <li className="characterList">
                 {renderCharacters()}

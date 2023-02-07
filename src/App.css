@@ -181,8 +181,16 @@ html, body, #root {
   height:24px;
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
+.menuBtn.menuF-true:hover{
+  cursor: not-allowed;
+}
+
+.menuBtn:hover {
+  cursor: pointer;
+}
 
 .foundtrue {
   filter: grayscale(100%);
@@ -191,13 +199,14 @@ html, body, #root {
 .menuF-true {
   pointer-events: none;
   filter:grayscale(100%);
+  background-color: gray;
 }
 
 .hidden {
   display:none !important;
 }
 
-.endPopUp {
+.endPopUp, .homePopUp {
   color: white;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -211,7 +220,7 @@ html, body, #root {
 .playerForm {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   
 }
 
@@ -226,12 +235,24 @@ html, body, #root {
 
 .formBtn {
   padding: 5px;
+  font-family: inherit;
+  background: inherit;
+  color: inherit;
+  width: 60px;
+
 }
 
 
 .entryDiv {
   display:flex;
   gap:5px;
+  align-items: center;
+}
+
+.entryDiv > input {
+  display: flex;
+  flex-grow: 1;
+  font-size: 18px;
 }
 
 .btnDiv {
@@ -246,12 +267,37 @@ html, body, #root {
   backdrop-filter: blur(6px);
 }
 
+.overlay {
+  position: fixed;
+  inset:0;
+
+  backdrop-filter: blur(6px);
+}
+
 
 .lbEntryDiv {
   display: flex;
   gap: 20px;
   padding: 5px;
+  
 }
+
+.lbEntryDiv > div {
+  font-size: 18px;
+}
+
+.lbEntryDiv > :nth-child(1) {
+  display: flex;
+  flex-grow: 1;
+}
+
+.lbEntryDiv > :nth-child(2) {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+
 
 .lbTime {
   justify-content: end;
@@ -260,8 +306,62 @@ html, body, #root {
 }
 
 .leaderboardTitle {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   border-bottom: 1px solid;
   padding: 5px;
+}
+
+.indexDiv {
+  display:flex;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+
+.indexBtns {
+  padding:5px;
+  
+}
+
+.navBtn {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: 0;
+}
+
+.navBtn:hover {
+  cursor: pointer;
+  color: red;
+}
+
+
+.lbContainer {
+  display:flex;
+  gap: 10px;
+  border-bottom: 5px solid white;
+}
+
+.lbBtns {
+  padding:5px;
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+  font-size: 30px;
+  border-bottom: 0px;
+}
+
+.lbBtns:hover {
+  color: red;
+}
+
+.selected {
+  color:red;
+}
+
+.lbTitle {
+  display:flex;
+  align-items: center;
 }

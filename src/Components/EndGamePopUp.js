@@ -76,7 +76,7 @@ const EndGamePopUp = ({totalTime, stageName, rawTime}) => {
         
     }
 
-    const [index, setIndex] = useState([])
+
 
    const renderLeaderboard = () => {
 
@@ -85,29 +85,14 @@ const EndGamePopUp = ({totalTime, stageName, rawTime}) => {
     
     console.log(sortedRanking)
 
-    if (sortedRanking.length > 10) {
-        let numOfPages = Math.ceil(sortedRanking.length /10)
-        console.log(numOfPages)
-
-        const arr = []
-        for (let i = 1; i <= numOfPages; i++) {
-        arr.push(<button>{i}</button>)
-        
-    }
-
-    }
-
-    
-    
        
     
-    
-    return sortedRanking.map( (value, index) => 
+    return sortedRanking.slice(indexNum, indexEnd).map( (value, index) => 
 
 
         <div key={`outer-${value.id}`}>
             <div className="lbEntryDiv" key={`entryDiv-${value.id}`}>
-                <div key={`index${value.id}`}>{index + 1}</div>
+                <div key={`index${value.id}`}>{index + 1 + indexNum}</div>
                 <div key={`dataName-${value.id}`}>{value.data.name}</div>
                 <div className="lbTime" key={`dataTime-${value.id}`}>{value.data.time}</div>
             </div>
@@ -115,7 +100,10 @@ const EndGamePopUp = ({totalTime, stageName, rawTime}) => {
         )
         
    }
+
+
    const [indexNum , setindexNum] = useState(0)
+   const [indexEnd, setindexEnd] = useState(10)
    const renderIndex = () => {
     let sortedRanking = userData.sort(
         (d1, d2) => ( d1.data.rawTime < d2.data.rawTime) ? -1 : (d1.data.rawTime > d2.data.rawTime ) ? 1 : 0)
@@ -129,7 +117,25 @@ const EndGamePopUp = ({totalTime, stageName, rawTime}) => {
 
         const arr = []
         for (let i = 0; i < numOfPages; i++) {
-        arr.push(<button className="indexBtns" onClick={()=> setindexNum(numOfPages)}>{i+1}</button>)
+        arr.push(<button className="indexBtns" key={`indexBtn${i}`} onClick={()=>{
+            
+            if (i !== 0) {
+                console.log('i', i * 10)
+                setindexNum((i * 10))
+                setindexEnd(() => {
+
+                    let newEnd = 10 * (i + 1)
+
+                    return (
+                        newEnd
+                    )
+                })
+            } else {
+                setindexNum(0)
+                setindexEnd(10)
+            }
+            console.log('index num', indexNum)
+        } }>{i+1}</button>)
         
         
     }
@@ -152,7 +158,7 @@ const EndGamePopUp = ({totalTime, stageName, rawTime}) => {
                 </div>
                 <div className="btnDiv">
                 <button className="formBtn" onClick={handleSubmit}>
-                    Ok
+                    Done
                 </button>
                 </div>
             </form>

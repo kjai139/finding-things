@@ -5,7 +5,10 @@ import { createRef } from "react"
 import { fireStore } from "../firebase"
 import { addDoc, collection } from "firebase/firestore"
 import { EndGamePopUp } from "./EndGamePopUp"
-
+import useSound from "use-sound"
+import dingSound from "./assets/sounds/ding.mp3"
+import beepSound from "./assets/sounds/negative_beeps-6008.mp3"
+import levelWin from "./assets/sounds/level-win.mp3"
 
 const NsixtyfourStage = () => {
 
@@ -23,6 +26,10 @@ const NsixtyfourStage = () => {
     const [totalTime, setTotalTime] = useState(0)
 
     const [rawTime, setRawTime] = useState(0)
+
+    const [playDing] = useSound(dingSound)
+    const [playBeep] = useSound(beepSound)
+    const [playWin] = useSound(levelWin)
 
     useEffect( () => {
         setScreenSize(getWindowsDimensions())
@@ -167,6 +174,7 @@ const NsixtyfourStage = () => {
         if ((xDiff <= Math.abs(targetRangeX) || xDiffTwo <= Math.abs(targetRangeX)) && (yDiff <= Math.abs(targetRangeY) ||  yDiffTwo <= Math.abs(targetRangeX))  ){
             
             console.log('in range')
+            
             // console.log(Math.abs(targetRangeX))
 
             // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
@@ -197,6 +205,7 @@ const NsixtyfourStage = () => {
             console.log('out of range')
             // console.log(Math.abs(mapCords.y - targetY), Math.abs(targetRangeY))
             // console.log(Math.abs(mapCords.x - targetX), Math.abs(targetRangeX))
+            playBeep()
         }
 
         
@@ -218,6 +227,9 @@ const NsixtyfourStage = () => {
         
         if (items == found) {
             setIsGameOver(true)
+            playWin()
+        } else {
+            playDing()
         }
         console.log(items, found)
     }
@@ -237,10 +249,10 @@ const NsixtyfourStage = () => {
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
             <div className={`popupMenu ${menuHidden ? 'hidden' : undefined }`} style={popupStyle}>
                 {loadCharacterMenu()}
-                <div>X:{mouseCords.x}</div>
+                {/* <div>X:{mouseCords.x}</div>
                 <div>Y:{mouseCords.y}</div>
                 <div>Map cords: {mapCords.x},{mapCords.y}</div>
-                <div>W: {screenSize.x} H: {screenSize.y}</div>
+                <div>W: {screenSize.x} H: {screenSize.y}</div> */}
             </div>
             </div>
             <div id="overlay" className={isGameOver ? undefined : 'hidden'}>
