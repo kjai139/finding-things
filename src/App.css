@@ -160,6 +160,7 @@ html, body, #root {
 
 
 .menuBtn {
+  border: 1px solid black;
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -168,6 +169,10 @@ html, body, #root {
   padding: 5px;
   text-align: start;
   background-position: center;
+}
+
+.menuBtn:hover {
+  filter: brightness(90%);
 }
 
 .menuBtn > span {
@@ -206,7 +211,7 @@ html, body, #root {
   display:none !important;
 }
 
-.endPopUp, .homePopUp {
+.endPopUp, .homePopUp, .charPopUp, .infoPopUp {
   color: white;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -215,6 +220,16 @@ html, body, #root {
 
   padding:10px;
   background-color: black;
+}
+
+.charPopUp {
+  
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 400px;
+  background-position: center center;
+  background-color: transparent !important;
 }
 
 .playerForm {
@@ -364,4 +379,14 @@ html, body, #root {
 .lbTitle {
   display:flex;
   align-items: center;
+}
+
+.targetBtn {
+  border:0;
+  background-color: inherit;
+}
+
+.targetBtn:hover {
+  border:1px solid;
+  cursor: pointer;
 }

@@ -6,7 +6,7 @@ import { fireStore } from "../firebase"
 
 const HomeNav = ({stages}) => {
 
-    const [isPopUpOpen, setisPopUpOpen] = useState(false)
+    const [isInfoOpen, setIsInfoOpen] = useState(false)
 
     const [isLBOpen, setIsLbOpen] = useState(false)
 
@@ -101,6 +101,7 @@ const HomeNav = ({stages}) => {
     return (
         <nav className="topNav">
             <div className={`overlay ${isLBOpen ? undefined : 'hidden'}` } onClick={() => isLBOpen ? setIsLbOpen(false) : setIsLbOpen(true)}></div>
+            <div className={`overlay ${isInfoOpen ? undefined : 'hidden'}` } onClick={() => isInfoOpen ? setIsInfoOpen(false) : setIsInfoOpen(true)}></div>
             <ul className="topNavList">
                 <li>
                     <button className="navBtn" onClick={() => isLBOpen ? setIsLbOpen(false) : setIsLbOpen(true) }>Leaderboard</button>
@@ -109,7 +110,7 @@ const HomeNav = ({stages}) => {
                     Finding-Not-Waldo
                 </li>
                 <li>
-                    Info
+                    <button className="navBtn" onClick={() => isInfoOpen ? setIsInfoOpen(false) : setIsInfoOpen(true)}>Info</button>
                 </li>
             </ul>
             <div className={`homePopUp ${isLBOpen ? undefined : 'hidden' }`}>
@@ -119,6 +120,19 @@ const HomeNav = ({stages}) => {
                 {renderLeaderboardBtns()}
                 </div>
                 {renderLeaderboard()}
+            </div>
+            <div className={`infoPopUp ${isInfoOpen ? null : 'hidden'}`}>
+                <p className="infoTitle">
+                    Finding Not Waldo Game
+                </p>
+                <p className="infoTxt">
+                    Project odin - Finding Waldo</p>
+                    <p>
+                    Artwork from Pierre Roussel</p>
+                    <p>
+                    <a href="https://www.artstation.com/artwork/oOVVlJ">Link to his artstation</a>
+                </p>
+
             </div>
         </nav>
     )

@@ -113,7 +113,7 @@ const Homepage = () => {
 
     const renderStages = () => {
         return stages.map(value =>
-            <Link className="stageLink" key={value.uuid} to={`/${value.stageTitle}`} state={value}>
+            <Link className="stageLink" key={value.uuid} to={`/finding-things/${value.stageTitle}`} state={value}>
             <div className="stageGridCard" key={`stages${value.uuid}`}>
                 <div className="stagesImg" key={`img${value.uuid}`} style = {{
                     backgroundImage: `${value.stageImg ? `url(${value.stageImg})` : '' }`

@@ -7,7 +7,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { EndGamePopUp } from "./EndGamePopUp"
 import useSound from "use-sound"
 import dingSound from "./assets/sounds/ding.mp3"
-import beepSound from "./assets/sounds/negative_beeps-6008.mp3"
+import beepSound from "./assets/sounds/negative_beep.mp3"
 import levelWin from "./assets/sounds/level-win.mp3"
 
 const NsixtyfourStage = () => {
@@ -24,6 +24,8 @@ const NsixtyfourStage = () => {
     const [isGameOver, setIsGameOver] = useState(false)
 
     const [totalTime, setTotalTime] = useState(0)
+
+    const [isCharPopOpen, setCharPopOpen] = useState(false)
 
     const [rawTime, setRawTime] = useState(0)
 
@@ -65,6 +67,7 @@ const NsixtyfourStage = () => {
 
     const getCords = (e) => {
         setMenuHidden(false)
+        setCharPopOpen(false)
         let {width, height} = e.target.getBoundingClientRect()
         let {offsetX, offsetY} = e.nativeEvent
         
@@ -244,7 +247,7 @@ const NsixtyfourStage = () => {
 
     return (
         <div className="App">
-            <TopNav characters={stage.characters} uuid={stage.uuid} isGameOver={isGameOver} setTotalTime={setTotalTime} setRawTime={setRawTime} />
+            <TopNav characters={stage.characters} uuid={stage.uuid} isGameOver={isGameOver} setTotalTime={setTotalTime} setRawTime={setRawTime} isCharPopOpen={isCharPopOpen} setCharPopOpen={setCharPopOpen} />
             <div className="stageBox">
             <img className="stageDiv" src={stage.stageImg} alt="stageImg" onClick={getCords}></img>
             <div className={`popupMenu ${menuHidden ? 'hidden' : undefined }`} style={popupStyle}>

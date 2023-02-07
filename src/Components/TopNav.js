@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 
 
-const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
+const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime, isCharPopOpen, setCharPopOpen}) => {
 
     const [timer, setTimer] = useState(0)
 
@@ -63,13 +63,23 @@ const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
     const renderCharacters = () => {
         return characters.map(value => 
             
-                <div className={`found${value.found} characterImg`} key={`${value.name}${uuid}`}style={{
+                <button value={value.imgUrl} className={`found${value.found} characterImg targetBtn`} key={`${value.name}${uuid}`} onClick={renderBiggerImg}  style={{
                     backgroundImage: `url(${value.imgUrl})`
                 }}>
 
-                </div>
+                </button>
             
             )
+    }
+
+    const [bigImg, setBigImg] = useState()
+    
+
+    const renderBiggerImg = (e) => {
+        
+        setBigImg(e.target.value)
+        setCharPopOpen(!isCharPopOpen)
+        
     }
 
 
@@ -87,12 +97,17 @@ const TopNav = ({characters, uuid, isGameOver, setTotalTime, setRawTime}) => {
                     <button onClick={stopTimer}>Stop timer</button> */}
                     {formatTime(timer)}
                 </li>
-                <Link className="navLinks" to={`/`}>
+                <Link className="navLinks" to={`/finding-things`}>
                 <li>
                     Return to menu
                 </li>
                 </Link>
             </ul>
+            <div className={`charPopUp ${isCharPopOpen ? null : 'hidden'}`} onClick={() => setCharPopOpen(!isCharPopOpen)} style={{
+                backgroundImage: `url(${bigImg})`
+            }}>
+
+            </div>
         </nav>
     )
 }

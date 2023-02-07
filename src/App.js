@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/:id' element={<NsixtyfourStage />} />
+        <Route path='/finding-things' exact element={<Homepage />} />
+        <Route path='/finding-things/:id' element={<NsixtyfourStage />} />
       </Routes>
       </BrowserRouter>
     </div>
